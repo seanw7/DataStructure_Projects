@@ -28,14 +28,31 @@ class BinaryTree:
             marker = self.__root
             while marker:
                 if node.value == marker.value:
+                    raise ValueError("The value was already inside the Binary Tree.")
                     # Raise a ValueError, because the node's value already exists.
-                    raise NotImplementedError()
                 elif node.value > marker.value:
+                    marker.get_right()
+                    if marker.value == None:
+                        marker.set_right()
+                    # elif node.value < marker.value:
+                    #     if marker.value == None:
+                    #         marker.set_left()
+
                     # Move to the right in the tree.
-                    raise NotImplementedError()
+
                 else:
+                    marker.get_left()
+                    if node.value > marker.value:
+                        marker.get_right()
+                        if marker.value == None:
+                            marker.set_right()
+
+                    else:
+                        marker.get_left()
+                        if marker.value == None:
+                            marker.set_left()
+
                     # Move to the left in the tree.
-                    raise NotImplementedError()
 
     def find(self, value):
         """
@@ -46,7 +63,17 @@ class BinaryTree:
         :param value: The value of the Node to locate.
         :return: Node, the found Node
         """
-        raise NotImplementedError()
+        marker = self.__root
+
+        while marker:
+            if value > marker.value:
+                marker.get_right
+            elif value < marker.value:
+                marker.get_left
+            elif value == marker.value:
+                return marker
+            else:
+                return LookupError("Did not find value: {}, in the Binary Tree").format(value)
 
     def print_inorder(self):
         self.__print_inorder_r(self.__root)
