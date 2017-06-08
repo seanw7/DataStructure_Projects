@@ -17,9 +17,9 @@ class LinkedList:
         :param node: the node to add at the start
         :return: None
         """
-        node = self.__root
-
-        raise NotImplementedError()
+        if self.__root:
+            node.set_next(self.__root)
+        self.__root = node
 
     def remove_end_from_list(self):
         """
@@ -30,7 +30,27 @@ class LinkedList:
         - Return the last node
         :return: the removed Node.
         """
-        raise NotImplementedError()
+        marker = self.__root
+
+        # Especially delete the root if it by itself. <<COPIED from teachers example>>
+        # If there is only one node in the list then this if clause is needed in order to remove it
+        # Because a None would be returned by the lower while clause. This is the default python return
+        if not marker.get_next():
+            self.__root = None
+            return marker
+
+        # Iterate over each node in the list.
+        while marker:
+            # Get the next node
+            following_node = marker.get_next()
+            if following_node:
+                # if the next Node's next Node is None, it means the current marker is the second
+                # to last Node. (because there is only one more after it).
+                if not following_node.get_next():
+                    # make the markers next = None so the very last Node is removed.
+                    marker.set_next(None)
+                    return following_node
+            marker = marker.get_next()
 
     def print_list(self):
         marker = self.__root
@@ -39,18 +59,18 @@ class LinkedList:
             marker = marker.get_next()
 
     def find(self, name):
-        """
-        You can reuse the method written for the previous assignment here.
-
-        :param name: the name of the Node to find.
-        :return: the found Node, or raises a LookupError if not found.
-        """
-        raise NotImplementedError()
+        marker = self.__root
+        while marker:
+            if marker.name == name:
+                return marker
+            marker = marker.get_next()
+        raise LookupError("Name {} was not found in the list.".format(name))
 
     def size(self):
-        """
-        You should implement this method!
-        It should return the amount of Nodes in the list.
-        :return: the amount of nodes in this list.
-        """
-        raise NotImplementedError()
+        # It should return the amount of Nodes in the list.
+        node_count = 0
+        marker = self.__root
+        while marker:
+            node_count += 1
+            marker = marker.get_next()
+        return node_count

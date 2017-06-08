@@ -15,22 +15,10 @@ class LinkedQueue:
         self.__linked_list = LinkedList()
 
     def push(self, node):
-        """
-        You should implement this method.
-        It should add a node to the linked list property.
-        :param node: The Node to add
-        :return: None
-        """
-        raise NotImplementedError()
+        self.__linked_list.add_start_to_list(node)
 
     def pop(self):
-        """
-        You should implement this method.
-        It should remove a node from the end of the linked list, and return
-        the removed node.
-        :return: Node, the last node of the linked list after being removed.
-        """
-        raise NotImplementedError()
+        return self.__linked_list.remove_end_from_list()
 
     def find(self, name):
         return self.__linked_list.find(name)
@@ -39,9 +27,5 @@ class LinkedQueue:
         self.__linked_list.print_list()
 
     def __len__(self):
-        """
-        You should implement this method.
-        It should return the amount of Nodes in the linked list.
-        :return:
-        """
-        raise NotImplementedError()
+        return self.__linked_list.size()
+
