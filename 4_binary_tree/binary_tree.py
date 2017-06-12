@@ -47,10 +47,6 @@ class BinaryTree:
                         if marker.value == None:
                             marker.set_right()
 
-                    else:
-                        marker.get_left()
-                        if marker.value == None:
-                            marker.set_left()
 
                     # Move to the left in the tree.
 
@@ -67,13 +63,13 @@ class BinaryTree:
 
         while marker:
             if value > marker.value:
-                marker.get_right
+                marker.get_right()
             elif value < marker.value:
-                marker.get_left
+                marker.get_left()
             elif value == marker.value:
                 return marker
             else:
-                return LookupError("Did not find value: {}, in the Binary Tree").format(value)
+                return LookupError("Did not find value: {}, in the Binary Tree".format(value))
 
     def print_inorder(self):
         self.__print_inorder_r(self.__root)
